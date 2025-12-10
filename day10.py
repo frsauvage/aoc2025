@@ -28,14 +28,15 @@ def solve_gf2(target, buttons):
 
     # Try all 2^n_buttons combinations
     min_presses = float('inf')
-
-    for mask in range(1 << n_buttons):
+    lefted_buttons = 1 << n_buttons
+    for mask in range(lefted_buttons):
         # Check if this combination works
         state = [0] * n_lights
         presses = 0
 
         for button_idx in range(n_buttons):
-            if mask & (1 << button_idx):
+            lefted_button = 1 << button_idx
+            if mask & (lefted_button):
                 presses += 1
                 for light in buttons[button_idx]:
                     state[light] ^= 1
